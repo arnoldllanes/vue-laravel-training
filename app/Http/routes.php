@@ -11,6 +11,15 @@
 |
 */
 
+Route::get('api/tasks', function() {
+	return App\Task::latest()->get();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/vue-resource', [
+	'uses' => 'vueResourceController@getIndex',
+	'as' => 'resource.resource'
+]);
