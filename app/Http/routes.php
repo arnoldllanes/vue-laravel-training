@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/vue-component', [
+	'uses' => 'vueComponentExController@getIndex',
+	'as' => 'component.component'
+]);
+
 Route::get('/vue-resource', [
 	'uses' => 'vueResourceController@getIndex',
 	'as' => 'resource.resource'
