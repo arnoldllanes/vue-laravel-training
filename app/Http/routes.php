@@ -28,3 +28,8 @@ Route::get('/vue-resource', [
 	'uses' => 'vueResourceController@getIndex',
 	'as' => 'resource.resource'
 ]);
+
+Route::get('/vue-laravel-workflow', [
+	'uses' => 'vueWorkflowController@getIndex',
+	'as' => 'workflow.workflow'
+]);
