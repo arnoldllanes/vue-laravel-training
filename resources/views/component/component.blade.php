@@ -27,7 +27,15 @@
 </head>
 <body>
 	<!-- When stating a type property you must explicitly declare them in the component-->
+	<alert>
+		<strong>Success!</strong> Your account has been updated.
+	</alert>
+	
 	<alert type="error">
+		<strong>Success!</strong> Your account has been updated.
+	</alert>
+
+	<alert type="success">
 		<strong>Success!</strong> Your account has been updated.
 	</alert>
 

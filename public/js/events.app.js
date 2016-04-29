@@ -10324,35 +10324,28 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = {
-
-	props: ['type'],
-
 	data: function data() {
-		return {
-			show: true
-		};
+		return { message: '' };
 	},
 
+	methods: {
+		storeMessage: function storeMessage() {
+			//console.log('Storing ' + this.message);
+			//$dispatch exclusively go up to every component, up the chain
+			//$broadcast the upper person goes down the chain
 
-	computed: {
-		alertClasses: function alertClasses() {
-			var type = this.type;
-
-			return {
-				'Alert': true,
-				'Alert--Success': type == 'success',
-				'Alert--Error': type == 'error'
-			};
+			this.$dispatch('new-message', this.message);
+			this.message = '';
 		}
 	}
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<!-- Putting a conditional in class type >>> use the class alert and if the class type is success, use AlertSuccess class, otherwise do nothing -->\n\t<div :class=\"alertClasses\" v-show=\"show\">\n\t\t<!-- What does this do?-->\n\t\t<slot></slot>\n\t\t<span class=\"Alert__close\" @click=\"show = false\">x</span>\n\t</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<input v-model=\"message\" @keyup.enter=\"storeMessage\">\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
-  var id = "/home/vagrant/Code/vue-laravel-training/resources/assets/js/components/Alert.vue"
+  var id = "/home/vagrant/Code/vue-laravel-training/resources/assets/js/components/Events.vue"
   if (!module.hot.data) {
     hotAPI.createRecord(id, module.exports)
   } else {
@@ -10362,25 +10355,30 @@ if (module.hot) {(function () {  module.hot.accept()
 },{"vue":3,"vue-hot-reload-api":2}],5:[function(require,module,exports){
 'use strict';
 
-var _Alert = require('./components/Alert.vue');
+var _Events = require('./components/Events.vue');
 
-var _Alert2 = _interopRequireDefault(_Alert);
+var _Events2 = _interopRequireDefault(_Events);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//browserify entrypoint
 var Vue = require('vue');
 
 new Vue({
-	el: '#app',
+	el: 'body',
 
-	components: { Alert: _Alert2.default }, //<alert>
+	components: { message: _Events2.default },
 
-	ready: function ready() {
-		alert('Ready to go!');
+	data: {
+		messages: []
+	},
+
+	methods: {
+		handleNewMessage: function handleNewMessage(message) {
+			this.messages.push(message);
+		}
 	}
 });
 
-},{"./components/Alert.vue":4,"vue":3}]},{},[5]);
+},{"./components/Events.vue":4,"vue":3}]},{},[5]);
 
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=events.app.js.map

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -33,3 +32,32 @@ Route::get('/vue-laravel-workflow', [
 	'uses' => 'vueWorkflowController@getIndex',
 	'as' => 'workflow.workflow'
 ]);
+
+Route::get('/vue-filter', [
+	'uses' => 'vueFilterController@getIndex',
+	'as' => 'filter.filter'
+]);
+
+Route::get('/vue-events', [
+	'uses' => 'vueEventsController@getIndex',
+	'as' => 'events.events'
+]);
+
+Route::get('/animations', [
+	'uses' => 'vueAnimationsController@getIndex',
+	'as' => 'animate.animate'
+]);
+
+
+
+Route::group(['middleware' => ['web']], function(){
+	Route::get('/async-forms', [
+		'uses' => 'vueAsyncFormController@getIndex',
+		'as' => 'async.form'	
+	]);
+
+	Route::delete('/posts/{post}', function(App\Post $post) {
+		$post->delete();
+	});
+
+});
