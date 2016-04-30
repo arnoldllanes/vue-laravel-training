@@ -10,6 +10,17 @@
 |
 */
 
+Route::get('alerts' , [
+	'uses' => 'vueAlertsController@getIndex',
+	'as' => 'alerts.alert'
+]);
+
+Route::get('begin', function() {
+	session()->flash('status', 'You are now signed in');
+	
+	return redirect('alerts');
+});
+
 Route::get('api/tasks', function() {
 	return App\Task::latest()->get();
 });
@@ -48,7 +59,19 @@ Route::get('/animations', [
 	'as' => 'animate.animate'
 ]);
 
+Route::get('/duplicate', [
+	'uses' => 'vueDuplicateStateController@getIndex',
+	'as' => 'duplicate.duplicate'
+]);
 
+Route::get('/view/specific', [
+	'uses' => 'vueViewSpecificController@getIndex',
+	'as' => 'view.content'
+]);
+
+Route::get('about', function () {
+	return view('about');
+});
 
 Route::group(['middleware' => ['web']], function(){
 	Route::get('/async-forms', [
